@@ -6,8 +6,7 @@ public class Challenge1 {
 
         for(int i=1;i<=100;i++){
             if(i %3 != 0 && i%5!=0){
-                System.out.print(i, " ");
-                continue;
+                System.out.print(i);
             }
             if(i %3 == 0){
                 System.out.print("Fizz");
