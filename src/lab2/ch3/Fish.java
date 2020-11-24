@@ -3,6 +3,10 @@ package lab2.ch3;
 public class Fish extends Animal implements Pet {
     private String name;
 
+    protected Fish() {
+        super(0);
+    }
+
     public String getName(){
         return name;
     }
@@ -17,8 +21,7 @@ public class Fish extends Animal implements Pet {
     }
 
     public void walk(){
-        super.walk();
-        System.out.println(" like a fish");
+        System.out.println(" Fish doesn't walk!");
     }
 
     public void eat(){

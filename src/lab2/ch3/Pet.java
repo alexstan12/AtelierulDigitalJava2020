@@ -1,7 +1,7 @@
 package lab2.ch3;
 
 public interface Pet {
-    public String getName();
-    public void setName(String name);
-    public void play();
+    public abstract String getName();
+    public abstract void setName(String name);
+    public abstract void play();
 }

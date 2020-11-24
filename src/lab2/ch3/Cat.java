@@ -7,7 +7,7 @@ public class Cat extends Animal implements Pet {
         this.name  = name;
     }
     public Cat(){
-        super(4);
+        this(" ");
     }
     public void setName(String name){
         this.name = name;
