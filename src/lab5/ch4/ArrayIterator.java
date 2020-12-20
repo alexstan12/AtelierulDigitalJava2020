@@ -1,6 +1,8 @@
 package lab5.ch4;
 
-public class ArrayIterator<T> implements IArrayIterator<T>{
+import java.util.Iterator;
+
+public class ArrayIterator<T> implements Iterator<T>,IArrayIterator<T>{
     private T[] arr;
     private int position=0;
 
