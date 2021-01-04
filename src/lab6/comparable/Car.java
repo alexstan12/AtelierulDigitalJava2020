@@ -28,4 +28,12 @@ public class Car implements Comparable<Car>{
                 "name='" + name + '\'' +
                 '}';
     }
+
+    public int getYear() {
+        return year;
+    }
+
+    public float getEngineSize() {
+        return engineSize;
+    }
 }

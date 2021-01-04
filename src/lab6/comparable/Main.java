@@ -10,7 +10,12 @@ public class Main {
         cars.add(new Car(2016,2000,"Car3"));
         cars.add(new Car(2016,2003,"Car4"));
 
-        Collections.sort(cars);
+        Collections.sort(cars, new Comparator<Car>() { //sorting using Comparator based on year
+            @Override
+            public int compare(Car car1, Car car2) {
+                return Integer.compare(car1.getYear(), car2.getYear());
+            }
+        });
         System.out.println(cars);
     }
 }
