@@ -20,12 +20,14 @@ public class TransactionThread extends Thread{
     private void transfer(BankAccount from, BankAccount to, double amount){
         try {
             synchronized (from) {
+                System.out.println(this.getName());
                 from.withdraw(amount);
             }
             synchronized (to) {
+                System.out.println(this.getName());
                 to.deposit(amount);
             }
-        }catch (InsufficientFundsException e){
+        }catch (InsufficientFundsException e){ // this is what stops the second thread to execute deposit
             System.out.println(e);
         }
     }

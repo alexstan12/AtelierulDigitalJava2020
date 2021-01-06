@@ -8,6 +8,8 @@ public class Main {
 
         TransactionThread tt1 = new TransactionThread("t1", ba1, ba2, 2000);
         TransactionThread tt2 = new TransactionThread("t1", ba1, ba3, 300);
-
+        // ba1 is a shared monitor object between the 2 threads
+        tt1.start();
+        tt2.start();
     }
 }

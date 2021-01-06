@@ -9,11 +9,11 @@ public class BankAccount {
         this.name = name;
     }
 
-    public void withdraw(double amount) throws InsufficientFundsException{
+    public synchronized void withdraw(double amount) throws InsufficientFundsException{
         longDatabaseCall();
         if(debit >= amount){
             this.debit-=amount;
-            System.out.println("New amount after withdraw :" + debit);
+            System.out.println("New amount after withdraw in " + name + " :" + debit);
         }else{
             throw new InsufficientFundsException();
         }
@@ -22,7 +22,7 @@ public class BankAccount {
     public void deposit(double amount){
         longDatabaseCall();
         this.debit+=amount;
-        System.out.println("New amount after deposit :" + debit);
+        System.out.println("New amount after deposit in " + name + " :" + debit);
     }
 
     private void longDatabaseCall(){
