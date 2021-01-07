@@ -4,55 +4,36 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class Philosopher implements Runnable{
-    private Chopstick cs1 = null;
-    private Chopstick cs2 = null;
-    private Chopstick[] chopsticksArr;
+    private Chopstick cs1 ;
+    private Chopstick cs2 ;
 
-    public Philosopher(Chopstick[] chopsticksArr) {
-        this.chopsticksArr = chopsticksArr;
+    public Philosopher(Chopstick cs1, Chopstick cs2) {
+        this.cs1 = cs1;
+        this.cs2 = cs2;
     }
 
     @Override
     public void run() {
-        grabSticks();
-    }
-
-    private synchronized void eat(){
-        if(this.cs1!=null && this.cs2!=null){
-            System.out.println(Thread.currentThread().getName() + " is eating");
-        }
-    }
-
-    private void grabSticks(){
-        int i=0;
-        while(i<chopsticksArr.length) {
-            Lock lock = new ReentrantLock();
-            if (lock.tryLock()) {
-
-                try {
-                    this.cs1 = chopsticksArr[i];
-                    if(i+1<chopsticksArr.length){
-                        i++;
-                    }else{
-                        i=0;
-                    }
-                    this.cs2 = chopsticksArr[i];
-                    eat();
-
-                } finally {
-                    lock.unlock();
-                    try {
-                        Thread.currentThread().sleep(3000);
-                        System.out.println("================");
-                    }catch (InterruptedException e ){
-                        e.printStackTrace();
+        try {
+            while (true) {
+                doAction(System.nanoTime() + ": Thinking");
+                synchronized (cs1) {
+                    doAction(System.nanoTime() + ": Left chopstick picked");
+                    synchronized (cs2){
+                        doAction(System.nanoTime() + ": Right chopstick picked - now eating");
+                        doAction(System.nanoTime() + ": Left chopstick put down");
+                        doAction(System.nanoTime() + ": Right chopstick put down - now thinking");
                     }
                 }
-            } else {
-                i++;
-                }
+            }
+        }catch (InterruptedException e){
+            Thread.currentThread().interrupt();
         }
+    }
 
-        }
+    private void doAction(String action) throws InterruptedException{
+        System.out.println(Thread.currentThread().getName() + " " + action);
+        Thread.sleep((int)(Math.random()*1000));
+    }
 
 }

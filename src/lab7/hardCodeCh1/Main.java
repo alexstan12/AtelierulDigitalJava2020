@@ -8,10 +8,14 @@ public class Main {
         }
         Thread[] philosophers = new Thread[5];
         for(int i=0; i< philosophers.length; i++){
-            philosophers[i] = new Thread(new Philosopher(chopsticks));
-        }
+            Chopstick cs1 = chopsticks[i];
+            Chopstick cs2 = chopsticks[(i+1)% chopsticks.length];
+            if(i== philosophers.length -1) {
+                philosophers[i] = new Thread(new Philosopher(cs2, cs1), "Philosopher " + (i + 1));
+            }else{
+                philosophers[i] = new Thread(new Philosopher(cs1, cs2), "Philosopher " + (i + 1));
 
-        for(int i=0; i< philosophers.length; i++){
+            }
             philosophers[i].start();
         }
     }
