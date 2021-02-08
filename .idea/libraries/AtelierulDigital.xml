@@ -2,6 +2,7 @@
   <library name="AtelierulDigital">
     <CLASSES>
       <root url="file://$PROJECT_DIR$" />
+      <root url="jar://$USER_HOME$/Downloads/reactor-core-3.3.0.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
